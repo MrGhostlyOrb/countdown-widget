@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Countdown</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="appwidget_text">Your Date: \n Place : 5 days 12 hours</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">Countdown widget to keep track of a date/time</string>
+    <string name="this_app_requires_configuration_in_the_source_code_to_set_the_time_date">This app requires configuration in the source code to set the time/date</string>
+    <string name="fab">FAB</string>
+</resources>
