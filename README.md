@@ -1,6 +1,6 @@
 # Countdown Widget
 
-This is a simple countdown widget for android 12.
+This is a simple countdown widget for Android 12.
 
 ## How to use
 
@@ -12,7 +12,7 @@ var targetTime = 1630000000L
 
 ## Design
 
-The app makes use of the Material You system accent colors to color the widget.
+The app makes use of the **Material You** system accent colors to color the widget.
 ```
 <TextView
     <!--Background Colour (Adaptable Light/Dark mode)-->

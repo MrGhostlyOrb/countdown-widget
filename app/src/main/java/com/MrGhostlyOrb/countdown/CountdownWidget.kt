@@ -4,6 +4,7 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.widget.RemoteViews
+import kotlin.math.abs
 
 /**
  * Implementation of App Widget functionality.
@@ -42,15 +43,15 @@ internal fun updateAppWidget(
     var days = timeDifference / 86400000
     var hours = (timeDifference % 86400000) / 3600000
     // Make values positive
-    var daysPositive = Math.abs(days)
-    var hoursPositive = Math.abs(hours)
+    val daysPositive1 = abs(days)
+    val hoursPositive1 = abs(hours)
 
     //If value is 1 change to singular
-    var daysString = if (daysPositive == 1L) "day" else "days"
-    var hoursString = if (hoursPositive == 1L) "hour" else "hours"
+    val daysString1 = if (daysPositive1 == 1L) "day" else "days"
+    val hoursString1 = if (hoursPositive1 == 1L) "hour" else "hours"
+    val location1 = "America"
     // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.countdown_widget)
-    views.setTextViewText(R.id.appwidget_text, "America : \n$daysPositive $daysString $hoursPositive $hoursString")
 
 
     targetTime = 1664737200000 // October 2 2022
@@ -59,15 +60,17 @@ internal fun updateAppWidget(
     days = timeDifference / 86400000
     hours = (timeDifference % 86400000) / 3600000
     // Make values positive
-    daysPositive = Math.abs(days)
-    hoursPositive = Math.abs(hours)
+    val daysPositive2 = Math.abs(days)
+    val hoursPositive2 = Math.abs(hours)
 
     //If value is 1 change to singular
-    daysString = if (daysPositive == 1L) "day" else "days"
-    hoursString = if (hoursPositive == 1L) "hour" else "hours"
+    val daysString2 = if (daysPositive2 == 1L) "day" else "days"
+    val hoursString2 = if (hoursPositive2 == 1L) "hour" else "hours"
+    val location2 = "Disney"
     // Construct the RemoteViews object
-    views.setTextViewText(R.id.appwidget_text2,
-        "Disney : \n$daysPositive $daysString $hoursPositive $hoursString"
+    views.setTextViewText(R.id.appwidget_text,
+        location1 + " : " + daysPositive1 + " " + daysString1 + " " + hoursPositive1 + " " + hoursString1 + "\n\n" +
+                location2 + " : " + daysPositive2 + " " + daysString2 + " " + hoursPositive2 + " " + hoursString2
     )
 
     // Instruct the widget manager to update the widget
