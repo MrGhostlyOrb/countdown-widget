@@ -2,10 +2,7 @@
     style="@style/Widget.Countdown.AppWidget.Container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="0dp"
-    android:layout_margin="0dp"
     android:theme="@style/Theme.Countdown.AppWidgetContainer"
-    android:weightSum="2"
     android:orientation="vertical">
 
     <TextView
@@ -13,16 +10,13 @@
         style="@style/Widget.Countdown.AppWidget.InnerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/app_widget_background"
         android:contentDescription="@string/appwidget_text"
         android:gravity="center"
         android:text="@string/appwidget_text"
-        android:textColor="@android:color/system_accent1_300"
         android:textSize="16sp"
         android:textStyle="bold|italic"
         android:layout_margin="0dp"
         android:padding="0dp"
-
         />
 
 </LinearLayout>
