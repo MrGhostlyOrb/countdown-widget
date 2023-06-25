@@ -26,13 +26,8 @@ import android.widget.RemoteViews
 import androidx.annotation.LayoutRes
 import androidx.core.util.SizeFCompat
 import androidx.core.widget.createResponsiveSizeAppWidget
-import com.MrGhostlyOrb.countdown.MainActivity
-import com.MrGhostlyOrb.countdown.R
 import kotlin.math.abs
 
-/**
- * Implementation of a list app widget.
- */
 class CountdownWidget : AppWidgetProvider() {
 
     override fun onUpdate(
@@ -56,9 +51,10 @@ class CountdownWidget : AppWidgetProvider() {
     companion object {
 
         private const val REQUEST_CODE_OPEN_ACTIVITY = 1
-        private const val PREFS_NAME = "com.MrGhostlyOrb.countdown.CountdownWidget"
+        private const val PREFS_NAME = "com.MrGhostlyOrb.countdown"
         private const val PREF_PREFIX_KEY = "countdown_"
-        private const val PREF_TARGET_TIME = "TARGET"
+        private const val PREF_TARGET_TIME = "_TIME"
+        private const val PREF_TARGET_PLACE = "_PLACE"
 
         @SuppressLint("RemoteViewLayout")
         internal fun updateAppWidget(
@@ -84,7 +80,7 @@ class CountdownWidget : AppWidgetProvider() {
             // If value is 1, change to singular
             val daysString = if (daysPositive == 1L) "day" else "days"
             val hoursString = if (hoursPositive == 1L) "hour" else "hours"
-            val location = "America"
+            val targetPlace = prefs.getString(PREF_TARGET_PLACE + appWidgetId, "America")
 
             // Construct the RemoteViews object
             val views = RemoteViews(context.packageName, R.layout.countdown)
@@ -92,7 +88,7 @@ class CountdownWidget : AppWidgetProvider() {
             // Set the text in the widget
             views.setTextViewText(
                 R.id.countdown_text,
-                "$location: $daysPositive $daysString $hoursPositive $hoursString"
+                "$targetPlace: $daysPositive $daysString $hoursPositive $hoursString"
             )
 
             val activityIntent = Intent(context, MainActivity::class.java).apply {

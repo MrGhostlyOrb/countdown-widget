@@ -28,7 +28,6 @@ import com.MrGhostlyOrb.countdown.databinding.ActivityWidgetConfigureBinding
  * The configuration screen for the [CountdownWidget] widget.
  */
 class CountdownWidgetConfigureActivity : AppCompatActivity() {
-
     var appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID
 
     public override fun onCreate(icicle: Bundle?) {
@@ -41,15 +40,11 @@ class CountdownWidgetConfigureActivity : AppCompatActivity() {
         val binding = ActivityWidgetConfigureBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        binding.groceryListContainer.setOnClickListener {
-//            onWidgetContainerClicked(R.layout.widget_grocery_list)
-//        }
-//        binding.todoListContainer.setOnClickListener {
-//            onWidgetContainerClicked(R.layout.widget_todo_list)
-//        }
         binding.button.setOnClickListener {
             val targetTime = binding.editTextNumber.text.toString().toLong()
             CountdownSharedPrefsUtil.saveTargetTimePref(this, appWidgetId, targetTime)
+            val targetPlace = binding.targetPlace.text.toString()
+            CountdownSharedPrefsUtil.saveTargetPlacePref(this, appWidgetId, targetPlace)
             onWidgetContainerClicked(R.layout.countdown)
         }
 
@@ -67,11 +62,7 @@ class CountdownWidgetConfigureActivity : AppCompatActivity() {
     }
 
     private fun onWidgetContainerClicked(@LayoutRes widgetLayoutResId: Int) {
-
-
-
         // Save the value to the widget preferences
-
         CountdownSharedPrefsUtil.saveWidgetLayoutIdPref(this, appWidgetId, widgetLayoutResId)
         // It is the responsibility of the configuration activity to update the app widget
         val appWidgetManager = AppWidgetManager.getInstance(this)

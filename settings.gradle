@@ -21,5 +21,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "AppWidget"
+rootProject.name = "Countdown"
 include ':countdown'

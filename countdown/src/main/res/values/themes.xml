@@ -3,12 +3,13 @@
     <style name="Base.Theme.Countdown" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="android:textColor">@android:color/primary_text_light</item>
+        <item name="android:statusBarColor">@android:color/system_neutral1_300</item>
 
     </style>
 
     <style name="Theme.Countdown" parent="Base.Theme.Countdown" />
 
-    <style name="Theme.Countdown.AppWidgetContainerParent" parent="@android:style/Theme.DeviceDefault">
+    <style name="Theme.Countdown.ContainerParent" parent="@android:style/Theme.DeviceDefault">
         <!-- Radius of the outer bound of widgets to make the rounded corners -->
         <item name="appWidgetRadius">16dp</item>
         <!--
@@ -18,7 +19,7 @@
         <item name="appWidgetInnerRadius">8dp</item>
     </style>
 
-    <style name="Theme.Countdown.AppWidgetContainer" parent="Theme.Countdown.AppWidgetContainerParent">
+    <style name="Theme.Countdown.Container" parent="Theme.Countdown.ContainerParent">
         <!-- Apply padding to avoid the content of the widget colliding with the rounded corners -->
         <item name="appWidgetPadding">16dp</item>
     </style>
