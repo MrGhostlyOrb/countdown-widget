@@ -80,7 +80,7 @@ class CountdownWidget : AppWidgetProvider() {
             // If value is 1, change to singular
             val daysString = if (daysPositive == 1L) "day" else "days"
             val hoursString = if (hoursPositive == 1L) "hour" else "hours"
-            val targetPlace = prefs.getString(PREF_TARGET_PLACE + appWidgetId, "America")
+            val targetPlace = prefs.getString(PREF_TARGET_PLACE + appWidgetId, "My Trip")
 
             // Construct the RemoteViews object
             val views = RemoteViews(context.packageName, R.layout.countdown)

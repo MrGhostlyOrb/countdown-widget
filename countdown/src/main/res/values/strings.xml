@@ -10,7 +10,7 @@
     <string name="button">Button</string>
     <string name="updateTime">UPDATE TIME</string>
     <string name="updateTitle">UPDATE PLACE</string>
-    <string name="example">Place: 10 Days 5 Minutes</string>
-    <string name="timestamp">Enter a UNIX Timestamp</string>
+    <string name="example">My Trip: 10 Days 5 Hours</string>
+    <string name="timestamp">Enter a UNIX Timestamp (milliseconds)</string>
     <string name="place">Enter a Place/Event</string>
 </resources>
