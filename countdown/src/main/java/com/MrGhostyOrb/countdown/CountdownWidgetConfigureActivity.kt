@@ -40,9 +40,14 @@ class CountdownWidgetConfigureActivity : AppCompatActivity() {
         val binding = ActivityWidgetConfigureBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.button.setOnClickListener {
+        binding.updateTimeButton.setOnClickListener {
             val targetTime = binding.editTextNumber.text.toString().toLong()
             CountdownSharedPrefsUtil.saveTargetTimePref(this, appWidgetId, targetTime)
+
+            onWidgetContainerClicked(R.layout.countdown)
+        }
+
+        binding.updatePlaceButton.setOnClickListener {
             val targetPlace = binding.targetPlace.text.toString()
             CountdownSharedPrefsUtil.saveTargetPlacePref(this, appWidgetId, targetPlace)
             onWidgetContainerClicked(R.layout.countdown)

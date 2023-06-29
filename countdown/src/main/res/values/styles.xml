@@ -12,4 +12,10 @@
         <item name="android:background">@drawable/app_widget_inner_view_background</item>
         <item name="android:clipToOutline">true</item>
     </style>
+
+    <style name="Theme.Countdown.Button" parent="Widget.Material3.Button">
+        <!-- Radius of the outer bound of widgets to make the rounded corners -->
+        <item name="colorButtonNormal">@color/material_dynamic_primary70</item>
+        <item name="android:textColor">@color/material_on_surface_emphasis_medium</item>
+    </style>
 </resources>

@@ -12,7 +12,7 @@ This is a simple countdown widget for Android 12.
 This project uses the Gradle build system. To build this project, use the
 "gradlew build" command or use "Import Project" in Android Studio.
 
-The countdown target time can be set in CountdownWidget.kt in UNIX timestamp format or entered in the widget's configuration settings at runtime. The default is set using the third parameter `1694347200000`
+The countdown target time can be set in CountdownWidget.kt in UNIX timestamp format(milliseconds) or entered in the widget's configuration settings at runtime. The default is set using the third parameter `1694347200000`
 
 `val targetTime = prefs.getLong(PREF_TARGET_TIME + appWidgetId, 1694347200000)`
 

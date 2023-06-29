@@ -4,29 +4,40 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp"
-    android:theme="@style/Theme.Countdown">
+    android:theme="@style/Theme.Countdown"
+    android:background="@drawable/app_widget_inner_view_background">
 
     <EditText
         android:id="@+id/editTextNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:autofillHints="UNIX Time string"
+        android:autofillHints="@string/timestamp"
         android:hint="@string/timestamp"/>
+
+    <Button
+        android:id="@+id/updateTimeButton"
+        style="@style/Widget.Material3.Button"
+        android:theme="@style/Theme.Countdown.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/updateTime"
+        android:textSize="16sp"/>
 
     <EditText
         android:id="@+id/targetPlace"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="@string/place"/>
+        android:hint="@string/place"
+        android:autofillHints="@string/place"/>
 
     <Button
-        android:id="@+id/button"
-        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:id="@+id/updatePlaceButton"
+        style="@style/Widget.Material3.Button"
+        android:theme="@style/Theme.Countdown.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/update"
-        android:background="@color/material_dynamic_primary70"
-        android:textColor="@color/material_on_surface_emphasis_medium"/>
+        android:text="@string/updateTitle"
+        android:textSize="16sp"/>
 </LinearLayout>
