@@ -13,21 +13,20 @@ object CountdownSharedPrefsUtil {
 
     internal fun saveWidgetLayoutIdPref(
         context: Context,
-        appWidgetId: Int,
         @LayoutRes layoutId: Int
     ) {
         context.getSharedPreferences(name = PREFS_NAME, mode = 0).edit {
-            putInt(PREF_PREFIX_KEY + appWidgetId, layoutId)
+            putInt(PREF_PREFIX_KEY, layoutId)
         }
     }
 
-    internal fun loadWidgetLayoutIdPref(context: Context, appWidgetId: Int): Int =
+    internal fun loadWidgetLayoutIdPref(context: Context): Int =
         context.getSharedPreferences(name = PREFS_NAME, mode = 0)
-            .getInt(PREF_PREFIX_KEY + appWidgetId, R.layout.countdown)
+            .getInt(PREF_PREFIX_KEY, R.layout.countdown)
 
-    internal fun deleteWidgetLayoutIdPref(context: Context, appWidgetId: Int) {
+    internal fun deleteWidgetLayoutIdPref(context: Context) {
         context.getSharedPreferences(name = PREFS_NAME, mode = 0).edit {
-            remove(PREF_PREFIX_KEY + appWidgetId)
+            remove(PREF_PREFIX_KEY)
         }
     }
 
@@ -35,17 +34,17 @@ object CountdownSharedPrefsUtil {
         return getSharedPreferences(name, mode)
     }
 
-    fun saveTargetTimePref(context: Context, appWidgetId: Int, targetTime: Long) {
+    fun saveTargetTimePref(context: Context, targetTime: Long) {
         val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         val editor = prefs.edit()
-        editor.putLong(PREF_TARGET_TIME + appWidgetId, targetTime)
+        editor.putLong(PREF_TARGET_TIME, targetTime)
         editor.apply()
     }
 
-    fun saveTargetPlacePref(context: Context, appWidgetId: Int, targetPlace: String) {
+    fun saveTargetPlacePref(context: Context, targetPlace: String) {
         val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         val editor = prefs.edit()
-        editor.putString(PREF_TARGET_PLACE + appWidgetId, targetPlace)
+        editor.putString(PREF_TARGET_PLACE, targetPlace)
         editor.apply()
     }
 }

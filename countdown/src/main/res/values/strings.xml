@@ -13,4 +13,7 @@
     <string name="example">My Trip: 10 Days 5 Hours</string>
     <string name="timestamp">Enter a UNIX Timestamp (milliseconds)</string>
     <string name="place">Enter a Place/Event</string>
+    <string name="countdown_configuration">Countdown Configuration</string>
+    <string name="logo">Countdown Logo</string>
+    <string name="TimestampLink">https://www.unixtimestamp.com/</string>
 </resources>

@@ -16,7 +16,6 @@
 
 package com.MrGhostlyOrb.countdown
 
-import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
@@ -44,27 +43,24 @@ class CountdownWidget : AppWidgetProvider() {
     override fun onDeleted(context: Context, appWidgetIds: IntArray) {
         // When the user deletes the widget, delete the preference associated with it.
         for (appWidgetId in appWidgetIds) {
-            CountdownSharedPrefsUtil.deleteWidgetLayoutIdPref(context, appWidgetId)
+            CountdownSharedPrefsUtil.deleteWidgetLayoutIdPref(context)
         }
     }
 
     companion object {
 
         private const val REQUEST_CODE_OPEN_ACTIVITY = 1
-        private const val PREFS_NAME = "com.MrGhostlyOrb.countdown"
-        private const val PREF_PREFIX_KEY = "countdown_"
-        private const val PREF_TARGET_TIME = "_TIME"
-        private const val PREF_TARGET_PLACE = "_PLACE"
+        const val PREFS_NAME = "com.MrGhostlyOrb.countdown"
+        const val PREF_TARGET_TIME = "_TIME"
+        const val PREF_TARGET_PLACE = "_PLACE"
 
-        @SuppressLint("RemoteViewLayout")
         internal fun updateAppWidget(
             context: Context,
             appWidgetManager: AppWidgetManager,
             appWidgetId: Int
         ) {
-            //val targetTime = 1694347200000 // September 10 2023 in milliseconds
             val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-            val targetTime = prefs.getLong(PREF_TARGET_TIME + appWidgetId, 1694347200000)
+            val targetTime = prefs.getLong(PREF_TARGET_TIME, 1694347200000)
             // Get the time difference between now and the target time
             val currentTime = System.currentTimeMillis()
             val timeDifference = targetTime - currentTime
@@ -80,7 +76,7 @@ class CountdownWidget : AppWidgetProvider() {
             // If value is 1, change to singular
             val daysString = if (daysPositive == 1L) "day" else "days"
             val hoursString = if (hoursPositive == 1L) "hour" else "hours"
-            val targetPlace = prefs.getString(PREF_TARGET_PLACE + appWidgetId, "My Trip")
+            val targetPlace = prefs.getString(PREF_TARGET_PLACE, "My Trip")
 
             // Construct the RemoteViews object
             val views = RemoteViews(context.packageName, R.layout.countdown)
@@ -94,7 +90,7 @@ class CountdownWidget : AppWidgetProvider() {
             val activityIntent = Intent(context, MainActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             }
-            val appOpenIntent = PendingIntent.getActivity(
+            PendingIntent.getActivity(
                 context,
                 REQUEST_CODE_OPEN_ACTIVITY,
                 activityIntent,
@@ -108,7 +104,7 @@ class CountdownWidget : AppWidgetProvider() {
                 @LayoutRes widgetLayoutId: Int
             ) = RemoteViews(context.packageName, widgetLayoutId).apply {}
 
-            val layoutId = CountdownSharedPrefsUtil.loadWidgetLayoutIdPref(context, appWidgetId)
+            val layoutId = CountdownSharedPrefsUtil.loadWidgetLayoutIdPref(context)
             val remoteViews = if (layoutId == R.layout.countdown) {
                 // Specify the maximum width and height in dp and a layout, which you want to use
                 // for the specified size

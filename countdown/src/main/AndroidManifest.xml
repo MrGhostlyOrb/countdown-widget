@@ -20,12 +20,12 @@
 
     <application
         android:allowBackup="true"
+        android:banner="@mipmap/ic_launcher_round"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Countdown"
-        android:banner="@mipmap/ic_launcher_round">
+        android:theme="@style/Theme.Countdown">
 
         <activity
             android:name=".MainActivity"

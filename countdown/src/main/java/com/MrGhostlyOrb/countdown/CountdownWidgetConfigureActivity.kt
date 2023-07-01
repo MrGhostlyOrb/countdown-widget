@@ -21,7 +21,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import com.MrGhostlyOrb.countdown.R
+import android.content.Context
 import com.MrGhostlyOrb.countdown.databinding.ActivityWidgetConfigureBinding
 
 /**
@@ -40,16 +40,30 @@ class CountdownWidgetConfigureActivity : AppCompatActivity() {
         val binding = ActivityWidgetConfigureBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val prefs = this.getSharedPreferences(CountdownWidget.PREFS_NAME, Context.MODE_PRIVATE)
+        val targetTime = prefs.getLong(CountdownWidget.PREF_TARGET_TIME, 1694347200000)
+
+        //Get the view and set text
+        binding.timeView.text = buildString {
+            append("Time: ")
+            append(targetTime)
+        }
+        binding.placeView.text =
+            buildString {
+                append("Place: ")
+                append(prefs.getString(CountdownWidget.PREF_TARGET_PLACE, "My Trip"))
+            }
+
         binding.updateTimeButton.setOnClickListener {
             val targetTime = binding.editTextNumber.text.toString().toLong()
-            CountdownSharedPrefsUtil.saveTargetTimePref(this, appWidgetId, targetTime)
+            CountdownSharedPrefsUtil.saveTargetTimePref(this, targetTime)
 
             onWidgetContainerClicked(R.layout.countdown)
         }
 
         binding.updatePlaceButton.setOnClickListener {
             val targetPlace = binding.targetPlace.text.toString()
-            CountdownSharedPrefsUtil.saveTargetPlacePref(this, appWidgetId, targetPlace)
+            CountdownSharedPrefsUtil.saveTargetPlacePref(this, targetPlace)
             onWidgetContainerClicked(R.layout.countdown)
         }
 
@@ -68,7 +82,7 @@ class CountdownWidgetConfigureActivity : AppCompatActivity() {
 
     private fun onWidgetContainerClicked(@LayoutRes widgetLayoutResId: Int) {
         // Save the value to the widget preferences
-        CountdownSharedPrefsUtil.saveWidgetLayoutIdPref(this, appWidgetId, widgetLayoutResId)
+        CountdownSharedPrefsUtil.saveWidgetLayoutIdPref(this, widgetLayoutResId)
         // It is the responsibility of the configuration activity to update the app widget
         val appWidgetManager = AppWidgetManager.getInstance(this)
         CountdownWidget.updateAppWidget(this, appWidgetManager, appWidgetId)
