@@ -17,12 +17,13 @@
 package com.MrGhostlyOrb.countdown
 
 import android.appwidget.AppWidgetManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import android.content.Context
 import com.MrGhostlyOrb.countdown.databinding.ActivityWidgetConfigureBinding
+import kotlinx.serialization.StringFormat
 
 /**
  * The configuration screen for the [CountdownWidget] widget.
@@ -54,16 +55,23 @@ class CountdownWidgetConfigureActivity : AppCompatActivity() {
                 append(prefs.getString(CountdownWidget.PREF_TARGET_PLACE, "My Trip"))
             }
 
-        binding.updateTimeButton.setOnClickListener {
-            val targetTime = binding.editTextNumber.text.toString().toLong()
-            CountdownSharedPrefsUtil.saveTargetTimePref(this, targetTime)
+        binding.save.setOnClickListener {
+            val targetTimeValue:Long;
+            try {
+                targetTimeValue = binding.editTextNumber.text.toString().toLong()
+                CountdownSharedPrefsUtil.saveTargetTimePref(this, targetTimeValue)
+            } catch (_: Exception) {
 
-            onWidgetContainerClicked(R.layout.countdown)
-        }
+            }
+            try {
+                val targetPlaceValue = binding.targetPlace.text.toString()
+                if (targetPlaceValue != ""){
+                    CountdownSharedPrefsUtil.saveTargetPlacePref(this, targetPlaceValue)
+                }
+            } catch (_: Exception) {
 
-        binding.updatePlaceButton.setOnClickListener {
-            val targetPlace = binding.targetPlace.text.toString()
-            CountdownSharedPrefsUtil.saveTargetPlacePref(this, targetPlace)
+            }
+
             onWidgetContainerClicked(R.layout.countdown)
         }
 

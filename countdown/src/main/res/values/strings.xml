@@ -9,9 +9,9 @@
     <string name="todo_list_build_widgets">Build widgets</string>
     <string name="button">Button</string>
     <string name="updateTime">UPDATE TIME</string>
-    <string name="updateTitle">UPDATE PLACE</string>
+    <string name="save">SAVE</string>
     <string name="example">My Trip: 10 Days 5 Hours</string>
-    <string name="timestamp">Enter a UNIX Timestamp (milliseconds)</string>
+    <string name="timestamp">Enter a UNIX Timestamp (seconds)</string>
     <string name="place">Enter a Place/Event</string>
     <string name="countdown_configuration">Countdown Configuration</string>
     <string name="logo">Countdown Logo</string>

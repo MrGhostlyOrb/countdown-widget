@@ -41,15 +41,6 @@
         android:hint="@string/timestamp"
         android:inputType="number" />
 
-    <Button
-        android:id="@+id/updateTimeButton"
-        style="@style/Widget.Material3.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/updateTime"
-        android:textSize="16sp"
-        android:theme="@style/Theme.Countdown.Button" />
-
     <EditText
         android:id="@+id/targetPlace"
         android:layout_width="match_parent"
@@ -59,11 +50,11 @@
         android:inputType="textPersonName" />
 
     <Button
-        android:id="@+id/updatePlaceButton"
+        android:id="@+id/save"
         style="@style/Widget.Material3.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/updateTitle"
+        android:text="@string/save"
         android:textSize="16sp"
         android:theme="@style/Theme.Countdown.Button" />
 
