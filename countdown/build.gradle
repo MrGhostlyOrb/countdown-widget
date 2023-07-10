@@ -18,6 +18,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'org.jetbrains.kotlin.plugin.serialization' version "1.7.20"
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {

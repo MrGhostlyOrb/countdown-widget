@@ -5,12 +5,14 @@
     android:background="@drawable/app_widget_inner_view_background"
     android:orientation="vertical"
     android:padding="16dp"
-    android:theme="@style/Theme.Countdown">
+    android:theme="@style/Theme.Countdown"
+    android:gravity="center">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:contentDescription="@string/logo"
+        android:paddingBottom="24dp"
         android:src="@mipmap/ic_launcher_round" />
 
     <TextView
@@ -20,26 +22,18 @@
         android:textAlignment="center" />
 
     <TextView
-        android:id="@+id/timeView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textIsSelectable="true" />
-
-    <TextView
         android:id="@+id/placeView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textIsSelectable="true" />
 
-    <EditText
-        android:id="@+id/editTextNumber"
-        android:layout_width="match_parent"
+    <DatePicker
+        android:id="@+id/editTimeNumber"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:autofillHints="@string/timestamp"
-        android:hint="@string/timestamp"
-        android:inputType="number" />
+        android:layout_gravity="center"
+        android:paddingTop="24dp"/>
 
     <EditText
         android:id="@+id/targetPlace"

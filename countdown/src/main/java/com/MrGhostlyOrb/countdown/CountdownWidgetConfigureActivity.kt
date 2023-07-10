@@ -20,10 +20,12 @@ import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.DatePicker
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import com.MrGhostlyOrb.countdown.databinding.ActivityWidgetConfigureBinding
 import kotlinx.serialization.StringFormat
+import java.util.Calendar
 
 /**
  * The configuration screen for the [CountdownWidget] widget.
@@ -41,25 +43,44 @@ class CountdownWidgetConfigureActivity : AppCompatActivity() {
         val binding = ActivityWidgetConfigureBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val datePicker = findViewById<DatePicker>(R.id.editTimeNumber)
+
         val prefs = this.getSharedPreferences(CountdownWidget.PREFS_NAME, Context.MODE_PRIVATE)
         val targetTime = prefs.getLong(CountdownWidget.PREF_TARGET_TIME, 1694347200000)
 
-        //Get the view and set text
-        binding.timeView.text = buildString {
-            append("Time: ")
-            append(targetTime)
+        val targetCalendar = Calendar.getInstance().apply {
+            timeInMillis = targetTime * 1000
         }
+        // Set the DatePicker's initial date to the current date
+        datePicker.init(
+            targetCalendar.get(Calendar.YEAR),
+            targetCalendar.get(Calendar.MONTH),
+            targetCalendar.get(Calendar.DAY_OF_MONTH),
+            null
+        )
+
         binding.placeView.text =
             buildString {
-                append("Place: ")
+                append("Place/Event: ")
                 append(prefs.getString(CountdownWidget.PREF_TARGET_PLACE, "My Trip"))
             }
 
         binding.save.setOnClickListener {
-            val targetTimeValue:Long;
+            //val targetTimeValue:Long;
             try {
-                targetTimeValue = binding.editTextNumber.text.toString().toLong()
-                CountdownSharedPrefsUtil.saveTargetTimePref(this, targetTimeValue)
+                //targetTimeValue = binding.editTextNumber.text.toString().toLong()
+                val selectedHour = 23 // Set the desired hour here
+                val selectedMinute = 59 // Set the desired minute here
+                val selectedDate = Calendar.getInstance().apply {
+                    set(datePicker.year, datePicker.month, datePicker.dayOfMonth, selectedHour, selectedMinute)
+                }
+
+                // Convert the selected date to a UNIX timestamp
+                val selectedTimestamp = selectedDate.timeInMillis / 1000
+
+                // Save the selected timestamp to the preferences
+                CountdownSharedPrefsUtil.saveTargetTimePref(this, selectedTimestamp)
+
             } catch (_: Exception) {
 
             }
