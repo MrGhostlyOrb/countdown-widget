@@ -52,12 +52,4 @@
         android:textSize="16sp"
         android:theme="@style/Theme.Countdown.Button" />
 
-    <TextView
-        android:id="@+id/txtLink"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autoLink="all"
-        android:paddingTop="@android:dimen/app_icon_size"
-        android:text="@string/TimestampLink"
-        android:textAlignment="center" />
 </LinearLayout>
